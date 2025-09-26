@@ -215,10 +215,11 @@ function nextQuestion() {
         alert('Debes responder antes de continuar.');
         return;
     }
+    
     state.index += 1;
-    renderQuestion();
     jokerBtn.disabled = true;
     jokerBtn.classList.remove('locked');
+    renderQuestion();
 }
 
 function resetGame() {

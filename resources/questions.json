@@ -2,10 +2,10 @@
   {
     "id": 1,
     "type": "mc",
-    "question": "¿Cuál es el estado del aire que sentimos a diario?",
-    "choices": ["Humedad", "Temperatura", "Presión", "Viento"],
+    "question": "Magnitud física que mide qué tan caliente o frío está un cuerpo.",
+    "choices": ["Humedad", "Temperatura", "Presión", "Calor"],
     "answer": 1,
-    "explanation": "La temperatura indica el calor o frío del ambiente.",
+    "explanation": "La temperatura mide el movimiento de las partículas: a más rápido se mueven, más caliente está el cuerpo",
     "word": "temperatura",
     "position": 0,
     "hint": "Se mide en grados Celsius o Fahrenheit."
@@ -13,106 +13,106 @@
   {
     "id": 2,
     "type": "text",
-    "question": "Escribe el artículo definido que corresponde: ___ sol",
-    "answer": "El",
-    "explanation": "El artículo definido masculino singular es 'El'.",
+    "question": "Unidad de temperatura más usada en la vida diaria",
+    "answer": "celsius",
+    "explanation": "La escala Celsius (°C) es la más usada en la vida cotidiana; el 0 °C es el punto de congelación del agua y el 100 °C el de ebullición.",
     "word": "mide",
     "position": 1,
-    "hint": "Es masculino y singular."
+    "hint": "Empieza por 'C'"
   },
   {
     "id": 3,
     "type": "mc",
-    "question": "¿Cuál es el planeta más cercano al sol?",
-    "choices": ["Venus", "Mercurio", "Marte", "Tierra"],
-    "answer": 1,
-    "explanation": "Mercurio es el planeta más cercano al sol.",
+    "question": "Unidad de energía en el Sistema Internacional",
+    "choices": ["Joule", "Metro", "Newtons", "Watts"],
+    "answer": 0,
+    "explanation": "El Joule (J) mide energía, incluido el calor. A veces se usa la caloría, pero en ciencia se prefiere el Joule",
     "word": "grado",
     "position": 2,
-    "hint": "Pista: es el más pequeño del sistema solar."
+    "hint": "¿Joulio? ¿Agosto?"
   },
   {
     "id": 4,
     "type": "text",
-    "question": "Completa la palabra: d___a (nombre de un continente)",
-    "answer": "de América",
-    "explanation": "Se refiere a 'de América'.",
+    "question": "Entre metal y madera, ¿cuál conduce mejor el calor?",
+    "answer": "metal",
+    "explanation": "El metal conduce muy bien el calor porque sus electrones se mueven fácilmente; la madera es aislante y no transmite calor rápido.",
     "word": "agitación",
     "position": 3,
-    "hint": "Es un continente."
+    "hint": "Es el más resistente."
   },
   {
     "id": 5,
     "type": "mc",
-    "question": "¿Cuál de estas opciones es un océano?",
-    "choices": ["Atlántico", "Andes", "Sahara", "Amazonas"],
-    "answer": 0,
-    "explanation": "El Atlántico es un océano.",
+    "question": "Forma de transferencia de calor que ocurre por contacto directo",
+    "choices": ["Inducción", "Radiación", "Conducción", "Convección"],
+    "answer": 2,
+    "explanation": "En la conducción, el calor pasa de partícula a partícula. Ejemplo: una cuchara metálica que se calienta en café caliente",
     "word": "partículas",
     "position": 4,
-    "hint": "No es un desierto ni un río."
+    "hint": "Cuando te quemas al cocinar."
   },
   {
     "id": 6,
     "type": "text",
-    "question": "Escribe el pronombre que reemplaza al sujeto: '___ es mi amigo'",
-    "answer": "Él",
-    "explanation": "El pronombre es 'Él'.",
+    "question": "Energía que se transfiere de un cuerpo caliente a uno frío.",
+    "answer": "calor",
+    "explanation": "El calor siempre fluye del cuerpo con mayor temperatura al de menor, nunca al revés",
     "word": "calor",
     "position": 5,
-    "hint": "Masculino singular."
+    "hint": "Lo percibes en un día soleado."
   },
   {
     "id": 7,
     "type": "mc",
-    "question": "¿Cuál de estos es un instrumento musical?",
-    "choices": ["Guitarra", "Silla", "Mesa", "Libro"],
-    "answer": 0,
-    "explanation": "La guitarra es un instrumento musical.",
+    "question": "Forma de transferencia de calor que se da en líquidos y gases por corrientes",
+    "choices": ["Conducción", "Radiación", "Inducción", "Convección"],
+    "answer": 3,
+    "explanation": "En la convección, el fluido caliente sube y el frío baja, creando corrientes. Ejemplo: el agua hirviendo en una olla",
     "word": "energía",
     "position": 6,
-    "hint": "Se toca con las manos o con púa."
+    "hint": "¿Cóncavo o convexo?"
   },
   {
     "id": 8,
     "type": "text",
-    "question": "Completa: La flor se ____ al sol.",
-    "answer": "abre",
-    "explanation": "La flor se abre al sol.",
+    "question": "Forma de transferencia de calor que llega desde el Sol a la Tierra.",
+    "answer": "radiación",
+    "explanation": "La radiación viaja en forma de ondas electromagnéticas, por eso recibimos calor del Sol aunque esté en el vacío",
     "word": "transfiere",
     "position": 7,
-    "hint": "Acción que hace la flor por la luz."
+    "hint": "¿Ondas?"
   },
   {
     "id": 9,
     "type": "mc",
-    "question": "¿Cuál de estas opciones es un líquido vital?",
-    "choices": ["Agua", "Aire", "Tierra", "Fuego"],
+    "question": "El agua tarda más en calentarse que la arena porque tiene mayor...",
+    "choices": ["Calor", "Densidad", "Volúmen", "Peso"],
     "answer": 0,
-    "explanation": "El agua es esencial para la vida.",
+    "explanation": "El agua tiene mayor calor específico, lo que significa que necesita más energía para subir su temperatura que la arena.",
     "word": "cuerpos",
     "position": 8,
-    "hint": "Se bebe y se encuentra en ríos y mares."
+    "hint": "Muy particular de cada cuerpo."
   },
   {
     "id": 10,
     "type": "text",
-    "question": "Escribe el nombre de la energía que proviene del sol",
-    "answer": "luz solar",
-    "explanation": "La luz solar es la fuente principal de energía.",
+    "question": "Durante el derretimiento del hielo, la temperatura permanece...",
+    "answer": "constante",
+    "explanation": "En un cambio de estado, como derretir hielo, la temperatura se mantiene constante aunque se siga absorbiendo calor",
     "word": "diferencia",
     "position": 9,
-    "hint": "Pista: ilumina y da calor."
+    "hint": "Siempre permanece igual."
   },
   {
     "id": 11,
     "type": "mc",
-    "question": "¿Cuál de estas opciones es un gas que respiramos?",
-    "choices": ["Oxígeno", "Hierro", "Agua", "Carbono sólido"],
+    "question": "Cuando sudamos, el cuerpo se enfría porque el sudor se...",
+    "choices": ["Expulsa", "Solidifica", "Evapora", "Condensa"],
     "answer": 0,
-    "explanation": "El oxígeno es un gas vital para la respiración.",
+    "explanation": "El sudor se evapora, y para hacerlo necesita calor de la piel, lo que enfría el cuerpo.",
     "word": "temperatura",
     "position": 10,
-    "hint": "Pista: lo inhalamos."
+    "hint": "Se condensa para formar las nubes."
   }
 ]
