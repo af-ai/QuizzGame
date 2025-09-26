@@ -46,9 +46,8 @@ function init() {
         try {
             const data = JSON.parse(e.target.result);
 
-            // Validación: mínimo 12 preguntas
-            if (!Array.isArray(data) || data.length < 11) {
-                alert('El archivo debe contener al menos 11 preguntas.');
+            if (!Array.isArray(data) || data.length !== 11) {
+                alert('El archivo debe contener 11 preguntas.');
                 return;
             }
 
