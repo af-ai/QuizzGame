@@ -34,19 +34,37 @@ const resetBtn = document.getElementById('resetBtn');
 const jokerBtn = document.getElementById('jokerBtn');
 
 function init() {
-    welcomeScreen.style.display = 'none';
-    document.querySelector('.app').style.display = 'block';
+    const file = document.getElementById('fileInput').files[0];
 
-    fetch('resources/questions.json')
-        .then(response => response.json())
-        .then(data => {
+    if (!file) {
+        alert('Por favor selecciona un archivo de preguntas.');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+
+            // Validación: mínimo 12 preguntas
+            if (!Array.isArray(data) || data.length < 11) {
+                alert('El archivo debe contener al menos 11 preguntas.');
+                return;
+            }
+
+            // Si pasa la validación, inicializamos el juego
             QUESTIONS = data;
+            welcomeScreen.style.display = 'none';
+            document.querySelector('.app').style.display = 'block';
             renderQuestion();
-        })
-        .catch(err => {
-            console.error("Error cargando preguntas:", err);
-            alert("No se pudieron cargar las preguntas.");
-        });
+
+        } catch (err) {
+            alert('El archivo no es un JSON válido.');
+            console.error(err);
+        }
+    };
+
+    reader.readAsText(file);
 }
 
 // === Render pregunta ===

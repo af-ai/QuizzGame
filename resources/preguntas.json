@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "type": "mc",
+    "question": "¿Cuál es el estado del aire que sentimos a diario?",
+    "choices": ["Humedad", "Temperatura", "Presión", "Viento"],
+    "answer": 1,
+    "explanation": "La temperatura indica el calor o frío del ambiente.",
+    "word": "temperatura",
+    "position": 0,
+    "hint": "Se mide en grados Celsius o Fahrenheit."
+  },
+  {
+    "id": 2,
+    "type": "text",
+    "question": "Escribe el artículo definido que corresponde: ___ sol",
+    "answer": "El",
+    "explanation": "El artículo definido masculino singular es 'El'.",
+    "word": "mide",
+    "position": 1,
+    "hint": "Es masculino y singular."
+  },
+  {
+    "id": 3,
+    "type": "mc",
+    "question": "¿Cuál es el planeta más cercano al sol?",
+    "choices": ["Venus", "Mercurio", "Marte", "Tierra"],
+    "answer": 1,
+    "explanation": "Mercurio es el planeta más cercano al sol.",
+    "word": "grado",
+    "position": 2,
+    "hint": "Pista: es el más pequeño del sistema solar."
+  }
+]
