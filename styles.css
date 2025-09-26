@@ -1,0 +1,191 @@
+    :root {
+        --bg: #0f1724;
+        --card: #0b1220;
+        --accent: #06b6d4;
+        --muted: #94a3b8;
+        --success: #10b981;
+        --danger: #ef4444
+    }
+
+    * {
+        box-sizing: border-box
+    }
+
+    body {
+        margin: 0;
+        font-family: Inter, Segoe UI, Roboto, Helvetica, Arial;
+        background: linear-gradient(180deg, #071029 0%, #071b2b 100%);
+        color: #e6eef6;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px
+    }
+
+    .app {
+        width: 100%;
+        max-width: 920px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 8px 30px rgba(2, 6, 23, 0.7)
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px
+    }
+
+    header h1 {
+        font-size: 20px;
+        margin: 0
+    }
+
+    .meta {
+        color: var(--muted);
+        font-size: 13px
+    }
+
+    .question-card {
+        background: var(--card);
+        padding: 18px;
+        border-radius: 10px
+    }
+
+    .q-text {
+        font-size: 18px;
+        margin-bottom: 12px
+    }
+
+    .choices {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 12px
+    }
+
+    .choice {
+        background: rgba(255, 255, 255, 0.02);
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.02);
+        cursor: pointer;
+        transition: box-shadow 0.3s;
+        box-shadow: 0 0 3px transparent;
+    }
+
+    .choice.selected {
+        border: 2px solid var(--accent);
+    }
+
+    .locked {
+        pointer-events: none;
+        /* ya no permite más clics */
+        opacity: 0.5;
+        /* opcional, para indicar que está bloqueada */
+    }
+
+
+    .choice:hover {
+        box-shadow: 0 0 3px var(--accent);
+    }
+
+    .controls {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 12px
+    }
+
+    button.btn {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 8px 12px;
+        border-radius: 8px;
+        color: inherit;
+        cursor: pointer
+    }
+
+    button.primary {
+        background: linear-gradient(90deg, var(--accent), #1fb2ff);
+        color: #021017;
+        border: 1px solid rgba(0, 0, 0, 0.15)
+    }
+
+    .feedback {
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 12px
+    }
+
+    .correct {
+        background: linear-gradient(90deg, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.04));
+        border: 1px solid rgba(16, 185, 129, 0.18);
+        color: var(--success)
+    }
+
+    .wrong {
+        background: linear-gradient(90deg, rgba(239, 68, 68, 0.06), rgba(239, 68, 68, 0.02));
+        border: 1px solid rgba(239, 68, 68, 0.12);
+        color: var(--danger)
+    }
+
+    .pista {
+        color: var(--muted);
+        font-size: 14px
+    }
+
+    #timer {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 8px 0 16px 0;
+        text-align: center;
+        color: var(--accent);
+        /* usa tu color de acento */
+    }
+
+
+    .final {
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 8px
+    }
+
+    .word-bank {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 8px
+    }
+
+    .word-bank .word {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 6px 8px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.02)
+    }
+
+    small.hint {
+        display: block;
+        color: var(--muted);
+        margin-top: 6px
+    }
+
+    .disabled {
+        opacity: 0.45;
+        pointer-events: none
+    }
+
+    footer.note {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 10px
+    }
+
+    pre {
+        white-space: pre-wrap
+    }

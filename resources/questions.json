@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "type": "mc",
+        "question": "¿Cuál es la capital de Colombia?",
+        "choices": [
+            "Medellín",
+            "Bogotá",
+            "Cali",
+            "Barranquilla"
+        ],
+        "answer": 1,
+        "explanation": "Bogotá es la capital y la sede del gobierno nacional. Las demás son ciudades importantes pero no capitales del país.",
+        "word": "La",
+        "hint": "Piensa en la categoría de la respuesta."
+    },
+    {
+        "id": 2,
+        "type": "text",
+        "question": "Escribe el resultado de: 5 + 3",
+        "answer": "8",
+        "explanation": "Sumar 5 y 3 da 8 — repasa la suma básica para evitar errores de cálculo.",
+        "word": "prueba",
+        "hint": "La respuesta tiene que ver estrictamente con la explicación."
+    },
+    {
+        "id": 3,
+        "type": "mc",
+        "question": "¿Cuál de las siguientes es una fruta?",
+        "choices": [
+            "Lechuga",
+            "Zanahoria",
+            "Manzana",
+            "Papa"
+        ],
+        "answer": 2,
+        "explanation": "La manzana es una fruta. Lechuga y zanahoria son verduras; la papa es un tubérculo.",
+        "word": "final",
+        "hint": "¿En qué tipo de plantas deberías pensar?"
+    }
+]

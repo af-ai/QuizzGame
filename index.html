@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Juego Quiz Interactivo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="app" role="application" aria-labelledby="appTitle">
+    <header>
+      <div>
+        <h1 id="appTitle">Quiz interactivo — Forma la oración</h1>
+        <div class="meta">Responde preguntas, usa comodines y forma la oración final con las palabras recogidas.</div>
+      </div>
+    </header>
+
+    <main>
+      <div class="question-card" id="card">
+        <div class="q-text" id="qText">Cargando pregunta...</div>
+
+        <div id="timer" style="font-weight:bold; margin:10px;">10</div>
+
+        <div class="choices" id="choices"></div>
+
+        <div class="controls">
+          <button class="btn" id="submitBtn">Enviar respuesta</button>
+          <button class="btn" id="nextBtn">Siguiente</button>
+          <button class="btn" id="showAnswerBtn">Mostrar respuesta</button>
+          <button class="btn" id="jokerBtn"><i class="fa-solid fa-lightbulb"></i> (<span id="joker">2</span>)</button>
+          <button class="btn" id="resetBtn">Reiniciar</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite" style="display:none"></div>
+
+        <div class="pista" id="pista" style="display:none"></div>
+
+        <div class="final" id="finalBox" style="display:none">
+          <strong>Oración formada:</strong>
+          <div id="finalSentence" style="margin-top:8px;font-size:16px"></div>
+          <div class="word-bank" id="collectedWords"></div>
+        </div>
+
+      </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="https://kit.fontawesome.com/df979b5c5b.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
