@@ -1,191 +1,249 @@
-    :root {
-        --bg: #0f1724;
-        --card: #0b1220;
-        --accent: #06b6d4;
-        --muted: #94a3b8;
-        --success: #10b981;
-        --danger: #ef4444
-    }
+:root {
+    --bg: #0f1724;
+    --card: #0b1220;
+    --accent: #06b6d4;
+    --muted: #94a3b8;
+    --success: #10b981;
+    --danger: #ef4444
+}
 
-    * {
-        box-sizing: border-box
-    }
+* {
+    box-sizing: border-box
+}
 
-    body {
-        margin: 0;
-        font-family: Inter, Segoe UI, Roboto, Helvetica, Arial;
-        background: linear-gradient(180deg, #071029 0%, #071b2b 100%);
-        color: #e6eef6;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 24px
-    }
+body {
+    margin: 0;
+    font-family: Inter, Segoe UI, Roboto, Helvetica, Arial;
+    background: linear-gradient(180deg, #071029 0%, #071b2b 100%);
+    color: #e6eef6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px
+}
 
-    .app {
-        width: 100%;
-        max-width: 920px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 8px 30px rgba(2, 6, 23, 0.7)
-    }
+#welcomeScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: #e6eef6;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
 
-    header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 14px
-    }
+#welcomeScreen h2 {
+    margin-bottom: 12px;
+}
 
-    header h1 {
-        font-size: 20px;
-        margin: 0
-    }
+#welcomeScreen p,
+#welcomeScreen ul {
+    margin-bottom: 12px;
+}
 
-    .meta {
-        color: var(--muted);
-        font-size: 13px
-    }
+#welcomeScreen ul li {
+    list-style: none;
+    font-weight: lighter;
+}
 
-    .question-card {
-        background: var(--card);
-        padding: 18px;
-        border-radius: 10px
-    }
-
-    .q-text {
-        font-size: 18px;
-        margin-bottom: 12px
-    }
-
-    .choices {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        margin-bottom: 12px
-    }
-
-    .choice {
-        background: rgba(255, 255, 255, 0.02);
-        color: white;
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.02);
-        cursor: pointer;
-        transition: box-shadow 0.3s;
-        box-shadow: 0 0 3px transparent;
-    }
-
-    .choice.selected {
-        border: 2px solid var(--accent);
-    }
-
-    .locked {
-        pointer-events: none;
-        /* ya no permite más clics */
-        opacity: 0.5;
-        /* opcional, para indicar que está bloqueada */
-    }
+#welcomeScreen button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
 
 
-    .choice:hover {
-        box-shadow: 0 0 3px var(--accent);
-    }
+.app {
+    width: 100%;
+    max-width: 920px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 30px rgba(2, 6, 23, 0.7)
+}
 
-    .controls {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-bottom: 12px
-    }
+header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px
+}
 
-    button.btn {
-        background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        padding: 8px 12px;
-        border-radius: 8px;
-        color: inherit;
-        cursor: pointer
-    }
+header h1 {
+    font-size: 20px;
+    margin: 0
+}
 
-    button.primary {
-        background: linear-gradient(90deg, var(--accent), #1fb2ff);
-        color: #021017;
-        border: 1px solid rgba(0, 0, 0, 0.15)
-    }
+.meta {
+    color: var(--muted);
+    font-size: 13px
+}
 
-    .feedback {
-        padding: 12px;
-        border-radius: 8px;
-        margin-bottom: 12px
-    }
+.question-card {
+    background: var(--card);
+    padding: 18px;
+    border-radius: 10px
+}
 
-    .correct {
-        background: linear-gradient(90deg, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.04));
-        border: 1px solid rgba(16, 185, 129, 0.18);
-        color: var(--success)
-    }
+.q-text {
+    font-size: 18px;
+    margin-bottom: 12px
+}
 
-    .wrong {
-        background: linear-gradient(90deg, rgba(239, 68, 68, 0.06), rgba(239, 68, 68, 0.02));
-        border: 1px solid rgba(239, 68, 68, 0.12);
-        color: var(--danger)
-    }
+.choices {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px
+}
 
-    .pista {
-        color: var(--muted);
-        font-size: 14px
-    }
+.choice {
+    background: rgba(255, 255, 255, 0.02);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    box-shadow: 0 0 3px transparent;
+}
 
-    #timer {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin: 8px 0 16px 0;
-        text-align: center;
-        color: var(--accent);
-        /* usa tu color de acento */
-    }
+.choice.selected {
+    border: 2px solid var(--accent);
+}
+
+.locked {
+    pointer-events: none;
+    /* ya no permite más clics */
+    opacity: 0.5;
+    /* opcional, para indicar que está bloqueada */
+}
 
 
-    .final {
-        padding: 12px;
-        background: rgba(255, 255, 255, 0.02);
-        border-radius: 8px
-    }
+.choice:hover {
+    box-shadow: 0 0 3px var(--accent);
+}
 
-    .word-bank {
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-        margin-top: 8px
-    }
+.controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px
+}
 
-    .word-bank .word {
-        background: rgba(255, 255, 255, 0.03);
-        padding: 6px 8px;
-        border-radius: 6px;
-        border: 1px solid rgba(255, 255, 255, 0.02)
-    }
+button.btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: inherit;
+    cursor: pointer
+}
 
-    small.hint {
-        display: block;
-        color: var(--muted);
-        margin-top: 6px
-    }
+button.primary {
+    background: linear-gradient(90deg, var(--accent), #1fb2ff);
+    color: #021017;
+    border: 1px solid rgba(0, 0, 0, 0.15)
+}
 
-    .disabled {
-        opacity: 0.45;
-        pointer-events: none
-    }
+.feedback {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px
+}
 
-    footer.note {
-        color: var(--muted);
-        font-size: 12px;
-        margin-top: 10px
-    }
+.correct {
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.04));
+    border: 1px solid rgba(16, 185, 129, 0.18);
+    color: var(--success)
+}
 
-    pre {
-        white-space: pre-wrap
-    }
+.wrong {
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.06), rgba(239, 68, 68, 0.02));
+    border: 1px solid rgba(239, 68, 68, 0.12);
+    color: var(--danger)
+}
+
+.pista {
+    color: var(--muted);
+    font-size: 14px
+}
+
+#timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 8px 0 16px 0;
+    text-align: center;
+    color: var(--accent);
+    /* usa tu color de acento */
+}
+
+
+.final {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px
+}
+
+.word-bank {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px
+}
+
+.word-bank .word {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.02)
+}
+
+.blank {
+    display: inline-block;
+    min-width: 60px;
+    text-align: center;
+    margin-right: 4px;
+}
+
+.blank.filled {
+    border-bottom: none;
+    font-weight: bold;
+}
+
+.word-input {
+    width: 80px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    padding: 2px 4px;
+    background: transparent;
+    color: #e6eef6;
+    text-align: center;
+    margin-right: 4px;
+}
+
+
+small.hint {
+    display: block;
+    color: var(--muted);
+    margin-top: 6px
+}
+
+.disabled {
+    opacity: 0.45;
+    pointer-events: none
+}
+
+footer.note {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 10px
+}
+
+pre {
+    white-space: pre-wrap
+}

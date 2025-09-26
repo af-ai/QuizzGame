@@ -9,7 +9,19 @@
 </head>
 
 <body>
-  <div class="app" role="application" aria-labelledby="appTitle">
+  <div id="welcomeScreen">
+    <h2>¡Bienvenido!</h2>
+    <p>Forma la oración correcta respondiendo preguntas. Puedes usar comodines para ayudarte.</p>
+    <ul>
+      <li>Responde rápido para ganar tiempo extra.</li>
+      <li>Puedes usar hasta 3 comodines por juego.</li>
+      <li>Forma la oración final.</li>
+    </ul>
+    <button id="startBtn" class="btn primary">Iniciar Juego</button>
+  </div>
+
+
+  <div class="app" role="application" aria-labelledby="appTitle" style="display: none">
     <header>
       <div>
         <h1 id="appTitle">Quiz interactivo — Forma la oración</h1>
@@ -28,7 +40,6 @@
         <div class="controls">
           <button class="btn" id="submitBtn">Enviar respuesta</button>
           <button class="btn" id="nextBtn">Siguiente</button>
-          <button class="btn" id="showAnswerBtn">Mostrar respuesta</button>
           <button class="btn" id="jokerBtn"><i class="fa-solid fa-lightbulb"></i> (<span id="joker">2</span>)</button>
           <button class="btn" id="resetBtn">Reiniciar</button>
         </div>
@@ -37,12 +48,22 @@
 
         <div class="pista" id="pista" style="display:none"></div>
 
-        <div class="final" id="finalBox" style="display:none">
+        <div class="final" id="finalBox">
           <strong>Oración formada:</strong>
-          <div id="finalSentence" style="margin-top:8px;font-size:16px"></div>
-          <div class="word-bank" id="collectedWords"></div>
+          <div id="finalSentence" style="margin-top:8px;font-size:16px">
+            La <span class="blank" data-pos="0" data-original="__________">__________</span>
+            <span class="blank" data-pos="1" data-original="____" >____</span>
+            el <span class="blank" data-pos="2" data-original="_____">_____</span>
+            de <span class="blank" data-pos="3" data-original="_________">_________</span>
+            de las <span class="blank" data-pos="4" data-original="__________">__________</span>,
+            mientras que el <span class="blank" data-pos="5" data-original="_____">_____</span>
+            es la <span class="blank" data-pos="6" data-original="_______">_______</span>
+            que se <span class="blank" data-pos="7" data-original="__________">__________</span>
+            entre <span class="blank" data-pos="8" data-original="_______">_______</span>
+            por <span class="blank" data-pos="9" data-original="__________">__________</span>
+            de <span class="blank" data-pos="10" data-original="___________">___________</span>.
+          </div>
         </div>
-
       </div>
   </div>
 

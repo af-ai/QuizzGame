@@ -1,41 +1,118 @@
 [
-    {
-        "id": 1,
-        "type": "mc",
-        "question": "¿Cuál es la capital de Colombia?",
-        "choices": [
-            "Medellín",
-            "Bogotá",
-            "Cali",
-            "Barranquilla"
-        ],
-        "answer": 1,
-        "explanation": "Bogotá es la capital y la sede del gobierno nacional. Las demás son ciudades importantes pero no capitales del país.",
-        "word": "La",
-        "hint": "Piensa en la categoría de la respuesta."
-    },
-    {
-        "id": 2,
-        "type": "text",
-        "question": "Escribe el resultado de: 5 + 3",
-        "answer": "8",
-        "explanation": "Sumar 5 y 3 da 8 — repasa la suma básica para evitar errores de cálculo.",
-        "word": "prueba",
-        "hint": "La respuesta tiene que ver estrictamente con la explicación."
-    },
-    {
-        "id": 3,
-        "type": "mc",
-        "question": "¿Cuál de las siguientes es una fruta?",
-        "choices": [
-            "Lechuga",
-            "Zanahoria",
-            "Manzana",
-            "Papa"
-        ],
-        "answer": 2,
-        "explanation": "La manzana es una fruta. Lechuga y zanahoria son verduras; la papa es un tubérculo.",
-        "word": "final",
-        "hint": "¿En qué tipo de plantas deberías pensar?"
-    }
+  {
+    "id": 1,
+    "type": "mc",
+    "question": "¿Cuál es el estado del aire que sentimos a diario?",
+    "choices": ["Humedad", "Temperatura", "Presión", "Viento"],
+    "answer": 1,
+    "explanation": "La temperatura indica el calor o frío del ambiente.",
+    "word": "temperatura",
+    "position": 0,
+    "hint": "Se mide en grados Celsius o Fahrenheit."
+  },
+  {
+    "id": 2,
+    "type": "text",
+    "question": "Escribe el artículo definido que corresponde: ___ sol",
+    "answer": "El",
+    "explanation": "El artículo definido masculino singular es 'El'.",
+    "word": "mide",
+    "position": 1,
+    "hint": "Es masculino y singular."
+  },
+  {
+    "id": 3,
+    "type": "mc",
+    "question": "¿Cuál es el planeta más cercano al sol?",
+    "choices": ["Venus", "Mercurio", "Marte", "Tierra"],
+    "answer": 1,
+    "explanation": "Mercurio es el planeta más cercano al sol.",
+    "word": "grado",
+    "position": 2,
+    "hint": "Pista: es el más pequeño del sistema solar."
+  },
+  {
+    "id": 4,
+    "type": "text",
+    "question": "Completa la palabra: d___a (nombre de un continente)",
+    "answer": "de América",
+    "explanation": "Se refiere a 'de América'.",
+    "word": "agitación",
+    "position": 3,
+    "hint": "Es un continente."
+  },
+  {
+    "id": 5,
+    "type": "mc",
+    "question": "¿Cuál de estas opciones es un océano?",
+    "choices": ["Atlántico", "Andes", "Sahara", "Amazonas"],
+    "answer": 0,
+    "explanation": "El Atlántico es un océano.",
+    "word": "partículas",
+    "position": 4,
+    "hint": "No es un desierto ni un río."
+  },
+  {
+    "id": 6,
+    "type": "text",
+    "question": "Escribe el pronombre que reemplaza al sujeto: '___ es mi amigo'",
+    "answer": "Él",
+    "explanation": "El pronombre es 'Él'.",
+    "word": "calor",
+    "position": 5,
+    "hint": "Masculino singular."
+  },
+  {
+    "id": 7,
+    "type": "mc",
+    "question": "¿Cuál de estos es un instrumento musical?",
+    "choices": ["Guitarra", "Silla", "Mesa", "Libro"],
+    "answer": 0,
+    "explanation": "La guitarra es un instrumento musical.",
+    "word": "energía",
+    "position": 6,
+    "hint": "Se toca con las manos o con púa."
+  },
+  {
+    "id": 8,
+    "type": "text",
+    "question": "Completa: La flor se ____ al sol.",
+    "answer": "abre",
+    "explanation": "La flor se abre al sol.",
+    "word": "transfiere",
+    "position": 7,
+    "hint": "Acción que hace la flor por la luz."
+  },
+  {
+    "id": 9,
+    "type": "mc",
+    "question": "¿Cuál de estas opciones es un líquido vital?",
+    "choices": ["Agua", "Aire", "Tierra", "Fuego"],
+    "answer": 0,
+    "explanation": "El agua es esencial para la vida.",
+    "word": "cuerpos",
+    "position": 8,
+    "hint": "Se bebe y se encuentra en ríos y mares."
+  },
+  {
+    "id": 10,
+    "type": "text",
+    "question": "Escribe el nombre de la energía que proviene del sol",
+    "answer": "luz solar",
+    "explanation": "La luz solar es la fuente principal de energía.",
+    "word": "diferencia",
+    "position": 9,
+    "hint": "Pista: ilumina y da calor."
+  },
+  {
+    "id": 11,
+    "type": "mc",
+    "question": "¿Cuál de estas opciones es un gas que respiramos?",
+    "choices": ["Oxígeno", "Hierro", "Agua", "Carbono sólido"],
+    "answer": 0,
+    "explanation": "El oxígeno es un gas vital para la respiración.",
+    "word": "temperatura",
+    "position": 10,
+    "hint": "Pista: lo inhalamos."
+  }
 ]

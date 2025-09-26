@@ -1,16 +1,5 @@
 let QUESTIONS = [];
 
-fetch('resources/questions.json')
-    .then(response => response.json())
-    .then(data => {
-        QUESTIONS = data;
-        renderQuestion(); // 👈 empieza el juego cuando cargue el JSON
-    })
-    .catch(err => {
-        console.error("Error cargando preguntas:", err);
-        alert("No se pudieron cargar las preguntas.");
-    });
-
 // === Estado del juego ===
 let state = {
     index: 0,
@@ -26,6 +15,7 @@ let state = {
 };
 
 // === Helpers DOM ===
+const welcomeScreen = document.getElementById('welcomeScreen');
 const qText = document.getElementById('qText');
 const choicesEl = document.getElementById('choices');
 const feedback = document.getElementById('feedback');
@@ -37,43 +27,36 @@ const joker = document.getElementById('joker');
 const timerEl = document.getElementById('timer');
 
 // === Botones ===
+const startBtn = document.getElementById('startBtn');
 const submitBtn = document.getElementById('submitBtn');
 const nextBtn = document.getElementById('nextBtn');
 const resetBtn = document.getElementById('resetBtn');
-const showAnswerBtn = document.getElementById('showAnswerBtn');
 const jokerBtn = document.getElementById('jokerBtn');
 
-// === Timer ===
-function startTimer() {
-    let total = 10 + (state.extraTime || 0);
-    if (total > 20) total = 20; // límite máximo
-    state.extraTime = 0; // consumir el bono
-    state.remaining = total;
+function init() {
+    welcomeScreen.style.display = 'none';
+    document.querySelector('.app').style.display = 'block';
 
-    clearInterval(state.timer);
-    timerEl.textContent = state.remaining;
-
-    state.timer = setInterval(() => {
-        state.remaining--;
-        timerEl.textContent = state.remaining;
-
-        if (state.remaining <= 0) {
-            clearInterval(state.timer);
-            lockedAnswer();
-            revealAnswer();
-        }
-    }, 1000);
+    fetch('resources/questions.json')
+        .then(response => response.json())
+        .then(data => {
+            QUESTIONS = data;
+            renderQuestion();
+        })
+        .catch(err => {
+            console.error("Error cargando preguntas:", err);
+            alert("No se pudieron cargar las preguntas.");
+        });
 }
 
 // === Render pregunta ===
 function renderQuestion() {
     feedback.style.display = 'none';
     pistaEl.style.display = 'none';
-    finalBox.style.display = 'none';
     state.answered = false;
 
     if (state.index >= QUESTIONS.length) {
-        showFinalSentence();
+        showFinalScreen();
         return;
     }
 
@@ -105,12 +88,31 @@ function renderQuestion() {
         choicesEl.appendChild(input);
     }
 
-    showAnswerBtn.disabled = true;
-    showAnswerBtn.classList.add('locked');
-    updateJokerUI();
-
     startTimer();
+    updateJokerUI();
     state.usedJokers = [];
+}
+
+// === Timer ===
+function startTimer() {
+    let total = 10 + (state.extraTime || 0);
+    if (total > 20) total = 20; // límite máximo
+    state.extraTime = 0; // consumir el bono
+    state.remaining = total;
+
+    clearInterval(state.timer);
+    timerEl.textContent = state.remaining;
+
+    state.timer = setInterval(() => {
+        state.remaining--;
+        timerEl.textContent = state.remaining;
+
+        if (state.remaining <= 0) {
+            clearInterval(state.timer);
+            lockedAnswer();
+            revealAnswer();
+        }
+    }, 1000);
 }
 
 function selectChoice(btn) {
@@ -119,7 +121,9 @@ function selectChoice(btn) {
 }
 
 function checkAnswer() {
-    if (state.answered) return;
+    if (state.index >= QUESTIONS.length) {
+        checkFinalSentence();
+    }
 
     const q = QUESTIONS[state.index];
     let correct = false;
@@ -138,24 +142,40 @@ function checkAnswer() {
         input.disabled = true;
     }
 
-    jokerBtn.disable = true;
+    jokerBtn.disabled = true;
     jokerBtn.classList.add('locked');
     lockedAnswer();
 
     state.answered = true;
     clearInterval(state.timer);
 
+    // Guardar en collected siempre
+    state.collected.push({ word: q.word, position: state.index, correct });
+
+    showFeedback(correct, q.explanation);
+
+    // Bonus de tiempo
     if (correct) {
         const elapsed = (Date.now() - state.startTime) / 1000;
-        showFeedback(true, q.explanation);
-        state.collected.push(q.word);
-
-        if (elapsed <= 5) {
-            state.extraTime = 3; // bonus para la siguiente
-        }
-    } else {
-        showFeedback(false, `Respuesta esperada: ${Array.isArray(q.choices) ? q.choices[q.answer] : q.answer}. \n\n${q.explanation}`);
+        if (elapsed <= 5) state.extraTime = 3;
     }
+
+    updateFinalSentence();
+}
+
+
+function updateFinalSentence() {
+    const blanks = finalSentence.querySelectorAll('.blank');
+    blanks.forEach(blank => {
+        const pos = parseInt(blank.dataset.pos, 10);
+        const collected = state.collected.find(c => c.position === pos);
+        if (collected) {
+            if (collected.correct) {
+                blank.textContent = collected.word;
+                blank.classList.add('filled');
+            }
+        }
+    });
 }
 
 function lockedAnswer() {
@@ -179,29 +199,85 @@ function nextQuestion() {
     }
     state.index += 1;
     renderQuestion();
-    jokerBtn.disable = true;
+    jokerBtn.disabled = true;
     jokerBtn.classList.remove('locked');
 }
 
 function resetGame() {
-    if (!confirm('¿Reiniciar el juego y borrar progreso?')) return;
+    if (!confirm('¿Reiniciar el juego y volver a la pantalla de inicio?')) return;
+
+    // Detener temporizador
     clearInterval(state.timer);
-    state = { index: 0, collected: [], jokers: 3, answered: false, startTime: 0, extraTime: 0, timer: null, remaining: 0 };
-    renderQuestion();
+
+    // Resetear estado
+    state = {
+        index: 0,
+        collected: [],
+        jokers: 3,
+        answered: false,
+        startTime: 0,
+        extraTime: 0,
+        timer: null,
+        remaining: 0,
+        usedJokers: []
+    };
+
+    // Limpiar campos dinámicos
+    const blanks = finalSentence.querySelectorAll('.blank');
+    blanks.forEach((blank, i) => {
+        blank.textContent = blank.dataset.original || '_____';
+        blank.classList.remove('filled');
+    });
+
+    // Limpiar inputs de elección o texto
+    choicesEl.innerHTML = '';
+    feedback.style.display = 'none';
+    pistaEl.style.display = 'none';
+
+    // Mostrar solo pantalla de bienvenida
+    document.querySelector('.app').style.display = 'none';
+    welcomeScreen.style.display = 'flex';
+    
+    // Reiniciar temporizador y botones
+    timerEl.textContent = '';
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('locked');
+    nextBtn.disabled = false;
+    nextBtn.classList.remove('locked');
+    jokerBtn.disabled = false;
+    jokerBtn.classList.remove('locked');
 }
 
-function showFinalSentence() {
-    finalBox.style.display = 'block';
-    const sentence = state.collected.join(' ');
-    finalSentence.textContent = sentence || '(No se recogieron palabras)';
-    collectedWords.innerHTML = '';
-    state.collected.forEach(w => {
-        const span = document.createElement('span');
-        span.className = 'word';
-        span.textContent = w;
-        collectedWords.appendChild(span);
+
+function showFinalScreen() {
+    nextBtn.disabled = true;
+    nextBtn.classList.add('locked');
+    jokerBtn.disabled = true;
+    jokerBtn.classList.add('locked');
+
+    const blanks = finalSentence.querySelectorAll('.blank');
+    if (Array.from(blanks).every(blank => blank.classList.contains('filled'))) {
+        qText.innerHTML = "¡Felicidades, completaste el desafío!";
+        submitBtn.disabled = true;
+        submitBtn.classList.add('locked');
+        return;
+    }
+
+    blanks.forEach(blank => {
+        if (!blank.classList.contains('filled')) {
+            const pos = parseInt(blank.dataset.pos, 10);
+            blank.innerHTML = `<input type="text" class="word-input" data-pos="${pos}" placeholder="...">`;
+        }
     });
+
+    submitBtn.textContent = 'Enviar oración';
+    qText.innerHTML = "Completa la oración:"
+    timerEl.innerHTML = '';
+    choicesEl.innerHTML = '';
+    feedback.style.display = 'none';
+    pistaEl.style.display = 'none';
 }
+
 
 // === Comodines ===
 function useJoker() {
@@ -251,9 +327,9 @@ function apply5050() {
 }
 
 function applyHint() {
-  const q = QUESTIONS[state.index];
-  pistaEl.style.display = 'block';
-  pistaEl.textContent = `💡 Pista: ${q.hint || 'No hay pista disponible'}`;
+    const q = QUESTIONS[state.index];
+    pistaEl.style.display = 'block';
+    pistaEl.textContent = `💡 Pista: ${q.hint || 'No hay pista disponible'}`;
 }
 
 function applyExtraTime() {
@@ -284,12 +360,45 @@ function revealAnswer() {
     state.answered = true;
 }
 
+function checkFinalSentence() {
+    submitBtn.disabled = true;
+    submitBtn.classList.add('locked');
+
+    const blanks = document.querySelectorAll('.blank input');
+    if (blanks.length === 0) return;
+
+    let allCorrect = true;
+
+    blanks.forEach(input => {
+        const pos = parseInt(input.dataset.pos, 10);
+        const userWord = input.value.trim();
+        const correctWord = state.collected[pos].word;
+
+        if (userWord.toLowerCase() !== correctWord.toLowerCase()) {
+            allCorrect = false;
+            input.style.borderColor = 'red';
+        } else {
+            input.style.borderColor = 'green';
+        }
+    });
+
+    if (allCorrect) {
+        alert('¡Felicidades! Todas las palabras son correctas.');
+        resetGame();
+    } else {
+        alert('Algunas palabras son incorrectas. Aquí está la respuesta correcta:');
+        // mostrar las respuestas correctas reemplazando los inputs
+        blanks.forEach(input => {
+            const pos = parseInt(input.dataset.pos, 10);
+            input.parentElement.textContent = state.collected[pos].word;
+        });
+    }
+}
+
+
 // === Inicialización ===
 submitBtn.addEventListener('click', checkAnswer);
 nextBtn.addEventListener('click', nextQuestion);
 resetBtn.addEventListener('click', resetGame);
-showAnswerBtn.addEventListener('click', revealAnswer);
 jokerBtn.addEventListener('click', useJoker);
-
-// Render inicial
-renderQuestion();
+startBtn.addEventListener('click', init);
