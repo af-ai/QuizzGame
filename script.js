@@ -140,6 +140,7 @@ function selectChoice(btn) {
 function checkAnswer() {
     if (state.index >= QUESTIONS.length) {
         checkFinalSentence();
+        return;
     }
 
     const q = QUESTIONS[state.index];
