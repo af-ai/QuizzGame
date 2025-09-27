@@ -1,3 +1,4 @@
+/*-------------- Colores del tema de la aplicación --------------*/
 :root {
     --bg: #0f1724;
     --card: #0b1220;
@@ -7,12 +8,15 @@
     --danger: #ef4444
 }
 
+/*-------------- Normalización --------------*/
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box
 }
 
+/*-------------- Fuente y alineación --------------*/
 body {
-    margin: 0;
     font-family: Inter, Segoe UI, Roboto, Helvetica, Arial;
     background: linear-gradient(180deg, #071029 0%, #071b2b 100%);
     color: #e6eef6;
@@ -23,6 +27,7 @@ body {
     padding: 24px
 }
 
+
 #welcomeScreen {
     display: flex;
     flex-direction: column;
@@ -31,6 +36,7 @@ body {
     background: var(--bg);
     color: #e6eef6;
     padding: 30px;
+    border: 1px solid var(--accent);
     border-radius: 12px;
     max-width: 600px;
     margin: auto;
@@ -47,6 +53,8 @@ body {
 }
 
 #welcomeScreen ul li {
+    margin: 0;
+    padding: 0;
     list-style: none;
     font-weight: lighter;
 }
@@ -56,14 +64,14 @@ body {
     font-size: 16px;
 }
 
-
 .app {
     width: 100%;
     max-width: 920px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border: 1px solid var(--accent);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 8px 30px rgba(2, 6, 23, 0.7)
+    box-shadow: 0 8px 30px 10px rgba(2, 6, 23, 0.9);
 }
 
 header {
@@ -116,16 +124,21 @@ header h1 {
     border: 2px solid var(--accent);
 }
 
-.locked {
-    pointer-events: none;
-    /* ya no permite más clics */
-    opacity: 0.5;
-    /* opcional, para indicar que está bloqueada */
-}
-
-
 .choice:hover {
     box-shadow: 0 0 3px var(--accent);
+}
+
+.free-input {
+    padding: '10px';
+    border-radius: '8px';
+    border: '1px solid rgba(255,255,255,0.04)';
+    background: 'transparent';
+    color: 'inherit';
+}
+
+.locked {
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 .controls {
@@ -179,28 +192,12 @@ button.primary {
     margin: 8px 0 16px 0;
     text-align: center;
     color: var(--accent);
-    /* usa tu color de acento */
 }
-
 
 .final {
     padding: 12px;
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 8px
-}
-
-.word-bank {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-top: 8px
-}
-
-.word-bank .word {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 6px 8px;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.02)
 }
 
 .blank {
@@ -226,25 +223,14 @@ button.primary {
     margin-right: 4px;
 }
 
-
-small.hint {
+/*small.hint {
     display: block;
     color: var(--muted);
     margin-top: 6px
 }
 
-.disabled {
-    opacity: 0.45;
-    pointer-events: none
-}
-
-footer.note {
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 10px
-}
-
 pre {
+    border: 2px solid red;
     white-space: pre-wrap
 }
 
@@ -252,4 +238,4 @@ button.small,
 input.btn.small {
     padding: 6px 12px;
     font-size: 14px;
-}
+}*/

@@ -1,3 +1,4 @@
+let SENTENCE = [];
 let QUESTIONS = [];
 
 // === Estado del juego ===
@@ -33,30 +34,96 @@ const nextBtn = document.getElementById('nextBtn');
 const resetBtn = document.getElementById('resetBtn');
 const jokerBtn = document.getElementById('jokerBtn');
 
+
 function init() {
     welcomeScreen.style.display = 'none';
     document.querySelector('.app').style.display = 'block';
-    fetch('resources/questions.json').then(response => 
-        response.json()).then(data => { QUESTIONS = data; renderQuestion(); }).catch(err => {
-        console.error("Error cargando preguntas:", err);
-        alert("No se pudieron cargar las preguntas.");
-    });
+
+    fetch('resources/preguntas.json').then(response => response.json())
+        .then(data => {
+            loadData(data);
+            renderQuestionCard();
+        })
+        .catch(err => {
+            console.error("Error cargando preguntas:", err.message, err);
+            alert("No se pudieron cargar las preguntas.");
+        });
 }
 
-// === Render pregunta ===
-function renderQuestion() {
+function loadData(data) {
+    SENTENCE = data.sentence.split(" ");
+    QUESTIONS = data.questions;
+    const renderedSentence = renderSentence(SENTENCE, data.hiddenPositions);
+    finalSentence.innerHTML = renderedSentence;
+}
+
+function renderSentence(sentence, hiddenPositions) {
+    return sentence
+        .map((word, index) => {
+            if (hiddenPositions.includes(index)) {
+                return "_".repeat(word.length);
+            }
+            return word;
+        })
+        .join(" ");
+}
+
+function renderQuestionCard() {
     feedback.style.display = 'none';
     pistaEl.style.display = 'none';
-    state.answered = false;
+    
+    state.startTime = Date.now();
 
     if (state.index >= QUESTIONS.length) {
         showFinalScreen();
         return;
     }
 
-    state.startTime = Date.now();
     const q = QUESTIONS[state.index];
+
+    renderQuestion(q);
+    renderChoices(q);
+    startTimer();
+    updateJokerUI();
+    state.usedJokers = [];
+}
+
+function showFinalScreen() {
+    nextBtn.disabled = true;
+    nextBtn.classList.add('locked');
+    jokerBtn.disabled = true;
+    jokerBtn.classList.add('locked');
+
+
+
+    const blanks = finalSentence.querySelectorAll('.blank');
+    if (Array.from(blanks).every(blank => blank.classList.contains('filled'))) {
+        qText.innerHTML = "¡Felicidades, completaste el desafío!";
+        submitBtn.disabled = true;
+        submitBtn.classList.add('locked');
+        return;
+    }
+
+    blanks.forEach(blank => {
+        if (!blank.classList.contains('filled')) {
+            const pos = parseInt(blank.dataset.pos, 10);
+            blank.innerHTML = `<input type="text" class="word-input" data-pos="${pos}" placeholder="...">`;
+        }
+    });
+
+    submitBtn.textContent = 'Enviar oración';
+    qText.innerHTML = "Completa la oración:"
+    timerEl.innerHTML = '';
+    choicesEl.innerHTML = '';
+    feedback.style.display = 'none';
+    pistaEl.style.display = 'none';
+}
+
+function renderQuestion(q) {
     qText.textContent = `(${state.index + 1}/${QUESTIONS.length}) ${q.question}`;
+}
+
+function renderChoices(q) {
     choicesEl.innerHTML = '';
 
     if (q.type === 'mc') {
@@ -73,40 +140,10 @@ function renderQuestion() {
         const input = document.createElement('input');
         input.type = 'text';
         input.id = 'freeInput';
+        input.className = "free-input";
         input.placeholder = 'Escribe tu respuesta aquí...';
-        input.style.padding = '10px';
-        input.style.borderRadius = '8px';
-        input.style.border = '1px solid rgba(255,255,255,0.04)';
-        input.style.background = 'transparent';
-        input.style.color = 'inherit';
         choicesEl.appendChild(input);
     }
-
-    startTimer();
-    updateJokerUI();
-    state.usedJokers = [];
-}
-
-// === Timer ===
-function startTimer() {
-    let total = 10 + (state.extraTime || 0);
-    if (total > 20) total = 20; // límite máximo
-    state.extraTime = 0; // consumir el bono
-    state.remaining = total;
-
-    clearInterval(state.timer);
-    timerEl.textContent = state.remaining;
-
-    state.timer = setInterval(() => {
-        state.remaining--;
-        timerEl.textContent = state.remaining;
-
-        if (state.remaining <= 0) {
-            clearInterval(state.timer);
-            lockedAnswer();
-            revealAnswer();
-        }
-    }, 1000);
 }
 
 function selectChoice(btn) {
@@ -125,8 +162,10 @@ function checkAnswer() {
     let chosen = null;
 
     if (q.type === 'mc') {
-        const sel = choicesEl.querySelector('.selected');
-        if (!sel) { alert('Selecciona una opción antes de enviar'); return; }
+        if (!sel) {
+            alert('Selecciona una opción antes de enviar');
+            return;
+        }
         chosen = parseInt(sel.dataset.idx, 10);
         correct = chosen === q.answer;
     } else {
@@ -157,6 +196,76 @@ function checkAnswer() {
 
     updateFinalSentence();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// === Render pregunta ===
+
+
+// === Timer ===
+function startTimer() {
+    let total = 10 + (state.extraTime || 0);
+    if (total > 20) total = 20; // límite máximo
+    state.extraTime = 0; // consumir el bono
+    state.remaining = total;
+
+    clearInterval(state.timer);
+    timerEl.textContent = state.remaining;
+
+    state.timer = setInterval(() => {
+        state.remaining--;
+        timerEl.textContent = state.remaining;
+
+        if (state.remaining <= 0) {
+            clearInterval(state.timer);
+            lockedAnswer();
+            revealAnswer();
+        }
+    }, 1000);
+}
+
+
+
+
 
 
 function updateFinalSentence() {
@@ -192,7 +301,7 @@ function nextQuestion() {
         alert('Debes responder antes de continuar.');
         return;
     }
-    
+
     state.index += 1;
     jokerBtn.disabled = true;
     jokerBtn.classList.remove('locked');
@@ -233,7 +342,7 @@ function resetGame() {
     // Mostrar solo pantalla de bienvenida
     document.querySelector('.app').style.display = 'none';
     welcomeScreen.style.display = 'flex';
-    
+
     // Reiniciar temporizador y botones
     timerEl.textContent = '';
     submitBtn.disabled = false;
@@ -245,34 +354,7 @@ function resetGame() {
 }
 
 
-function showFinalScreen() {
-    nextBtn.disabled = true;
-    nextBtn.classList.add('locked');
-    jokerBtn.disabled = true;
-    jokerBtn.classList.add('locked');
 
-    const blanks = finalSentence.querySelectorAll('.blank');
-    if (Array.from(blanks).every(blank => blank.classList.contains('filled'))) {
-        qText.innerHTML = "¡Felicidades, completaste el desafío!";
-        submitBtn.disabled = true;
-        submitBtn.classList.add('locked');
-        return;
-    }
-
-    blanks.forEach(blank => {
-        if (!blank.classList.contains('filled')) {
-            const pos = parseInt(blank.dataset.pos, 10);
-            blank.innerHTML = `<input type="text" class="word-input" data-pos="${pos}" placeholder="...">`;
-        }
-    });
-
-    submitBtn.textContent = 'Enviar oración';
-    qText.innerHTML = "Completa la oración:"
-    timerEl.innerHTML = '';
-    choicesEl.innerHTML = '';
-    feedback.style.display = 'none';
-    pistaEl.style.display = 'none';
-}
 
 
 // === Comodines ===

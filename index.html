@@ -9,22 +9,29 @@
 </head>
 
 <body>
+  <!--Este div agrupa los elementos de la pantalla de bienvenida.-->
   <div id="welcomeScreen">
+
     <h2>¡Bienvenido!</h2>
+
     <p>Forma la oración correcta respondiendo preguntas. Puedes usar comodines para ayudarte.</p>
+
     <ul>
       <li>Responde rápido para ganar tiempo extra.</li>
       <li>Puedes usar hasta 3 comodines por juego.</li>
       <li>Forma la oración final.</li>
     </ul>
+
     <!--<input type="file" id="fileInput" accept=".json" class="btn primary small">
     <span id="fileName" style="margin-left: 8px; font-size: 14px;"></span>-->
+
     <button id="startBtn" class="btn primary">Iniciar Juego</button>
 
   </div>
 
-
+  <!--Este div agrupa los elementos del juego.-->
   <div class="app" role="application" aria-labelledby="appTitle" style="display: none">
+
     <header>
       <div>
         <h1 id="appTitle">Quiz interactivo — Forma la oración</h1>
@@ -32,12 +39,17 @@
       </div>
     </header>
 
+    <!--Contiene los elementos del cuestionario que se cambian dinámicamente.-->
     <main>
       <div class="question-card" id="card">
+
+        <!--Pregunta inicial.-->
         <div class="q-text" id="qText">Cargando pregunta...</div>
 
+        <!--Contador.-->
         <div id="timer" style="font-weight:bold; margin:10px;">10</div>
 
+        <!--Opciones de respuesta.-->
         <div class="choices" id="choices"></div>
 
         <div class="controls">
@@ -47,24 +59,16 @@
           <button class="btn" id="resetBtn">Reiniciar</button>
         </div>
 
+        <!--Contiene la explicación a una pregunta, se muestra o no dinámicamente.-->
         <div id="feedback" class="feedback" aria-live="polite" style="display:none"></div>
 
+        <!--Contiene una pista para responder la pregunta, se muestra o no dinámicamente.-->
         <div class="pista" id="pista" style="display:none"></div>
 
+        <!--Contiene la oración final que se quiere formar.-->
         <div class="final" id="finalBox">
           <strong>Oración formada:</strong>
           <div id="finalSentence" style="margin-top:8px;font-size:16px">
-            La <span class="blank" data-pos="0" data-original="__________">__________</span>
-            <span class="blank" data-pos="1" data-original="____">____</span>
-            el <span class="blank" data-pos="2" data-original="_____">_____</span>
-            de <span class="blank" data-pos="3" data-original="_________">_________</span>
-            de las <span class="blank" data-pos="4" data-original="__________">__________</span>,
-            mientras que el <span class="blank" data-pos="5" data-original="_____">_____</span>
-            es la <span class="blank" data-pos="6" data-original="_______">_______</span>
-            que se <span class="blank" data-pos="7" data-original="__________">__________</span>
-            entre <span class="blank" data-pos="8" data-original="_______">_______</span>
-            por <span class="blank" data-pos="9" data-original="__________">__________</span>
-            de <span class="blank" data-pos="10" data-original="___________">___________</span>.
           </div>
         </div>
       </div>
