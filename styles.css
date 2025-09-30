@@ -129,11 +129,24 @@ header h1 {
 }
 
 .free-input {
-    padding: '10px';
-    border-radius: '8px';
-    border: '1px solid rgba(255,255,255,0.04)';
-    background: 'transparent';
-    color: 'inherit';
+    margin: 5px;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: inherit;
+}
+
+.free-input-locked {
+    border-color: gray;
+}
+
+.free-input:focus {
+    outline: none;
 }
 
 .locked {
@@ -221,6 +234,14 @@ button.primary {
     color: #e6eef6;
     text-align: center;
     margin-right: 4px;
+}
+
+.revealed-word {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: bold;
+    font-style: italic;
+    margin: 5px;
 }
 
 /*small.hint {
