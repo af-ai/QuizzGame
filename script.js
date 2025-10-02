@@ -152,6 +152,7 @@ function startTimer() {
             clearInterval(state.timer);
             disableElements();
             showFeedback(false, QUESTIONS[state.index].explanation);
+            state.answered = true;
         }
     }, 1000);
 }
