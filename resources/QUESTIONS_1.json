@@ -81,13 +81,14 @@
     },
     {
       "id": 25,
-      "type": "text",
-      "question": "Explica con tus palabras cómo se calcula el calor requerido para calentar 200 g de agua de 25 °C a 75 °C.",
-      "answer": "Q = m·c·ΔT = 200 × 1 × (75 – 25) = 10 000 cal",
-      "explanation": "La fórmula general es Q = m·c·ΔT, multiplicando masa, calor específico y variación de temperatura.",
+      "type": "mc",
+      "question": "Si calentamos 200 g de agua de 25 °C a 75 °C (c = 1 cal/g·°C), el calor requerido es:",
+      "choices": ["5 000 cal", "10 000 cal", "15 000 cal"],
+      "answer": 2,
+      "explanation": "Q = 200 × 1 × (75 – 25) = 10 000 calorías. Esto muestra que duplicar la masa o la variación de temperatura aumenta proporcionalmente el calor necesario.",
       "word": "requerido",
       "position": 7,
-      "hint": "Usa la fórmula del calor sensible."
+      "hint": "Piensa en Q = m·c·ΔT."
     }
   ]
 }

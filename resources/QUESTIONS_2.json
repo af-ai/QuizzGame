@@ -81,13 +81,14 @@
     },
     {
       "id": 24,
-      "type": "text",
-      "question": "Explica el procedimiento para calcular el calor que requiere 100 g de agua al pasar de 20 °C a 30 °C.",
-      "answer": "Q = m·c·ΔT = 100 × 1 × 10 = 1 000 cal",
-      "explanation": "El calor sensible depende de la masa, el calor específico y la variación de temperatura.",
-      "word": "cuerpo",
+      "type": "mc",
+      "question": "El calor que requiere 100 g de agua para subir de 20 °C a 30 °C (c = 1 cal/g·°C):",
+      "choices": ["100 cal", "1 000 cal", "10 cal"],
+      "answer": 1,
+      "explanation": "Q = m · c · ΔT = 100 × 1 × (30 – 20) = 1 000 calorías.",
+      "word": "calor",
       "position": 7,
-      "hint": "Usa la fórmula Q = m·c·ΔT."
+      "hint": "Aplica la fórmula Q = m·c·ΔT."
     }
   ]
 }

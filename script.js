@@ -56,7 +56,6 @@ function init(path) {
 
 function selectSource(tries) {
     if (tries > 3) {
-        alert('¡Felicidades! Completaste el desafío.');
         return resetGame();
     }
 
@@ -240,6 +239,8 @@ function checkFinalSentence() {
 
     if (allCorrect) {
         alert('¡Felicidades! Encontraste todas las palabras.');
+        nextBtn.disabled = false;
+        nextBtn.classList.remove('locked');
         tries++;
         selectSource(tries);
     } else {
