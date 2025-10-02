@@ -1,0 +1,93 @@
+{
+  "sentence": "La temperatura no mide cuánto calor tiene un cuerpo , sino la intensidad del movimiento de sus partículas ; por eso dos objetos con la misma temperatura no siempre contienen la misma energía .",
+  "hiddenPositions": [1, 3, 5, 8, 12, 14, 22, 32],
+  "questions": [
+    {
+      "id": 1,
+      "type": "mc",
+      "question": "La temperatura mide:",
+      "choices": ["Energía total", "Energía en tránsito", "Agitación de las partículas"],
+      "answer": 2,
+      "explanation": "La temperatura no mide la cantidad de calor de un cuerpo, sino la energía cinética promedio de sus partículas.",
+      "word": "temperatura",
+      "position": 0,
+      "hint": "No es calor, es movimiento."
+    },
+    {
+      "id": 2,
+      "type": "mc",
+      "question": "Instrumento que mide la temperatura:",
+      "choices": ["Calorímetro", "Termómetro", "Barómetro"],
+      "answer": 1,
+      "explanation": "El termómetro mide directamente la temperatura, mientras que el calorímetro mide calor transferido y el barómetro presión.",
+      "word": "instrumento",
+      "position": 1,
+      "hint": "Lo usas cuando tienes fiebre."
+    },
+    {
+      "id": 3,
+      "type": "mc",
+      "question": "Unidad básica de temperatura en el Sistema Internacional:",
+      "choices": ["Kelvin (K)", "Celsius (°C)", "Fahrenheit (°F)"],
+      "answer": 0,
+      "explanation": "En ciencia se usa el Kelvin porque parte del cero absoluto.",
+      "word": "unidad",
+      "position": 2,
+      "hint": "Parte desde el cero absoluto."
+    },
+    {
+      "id": 16,
+      "type": "mc",
+      "question": "El metal se siente más frío que la madera porque:",
+      "choices": ["Está a menor temperatura", "Conduce mejor el calor", "Es un aislante"],
+      "answer": 1,
+      "explanation": "Aunque ambos estén a la misma temperatura, el metal extrae calor más rápido de tu mano.",
+      "word": "metal",
+      "position": 3,
+      "hint": "No porque esté más frío."
+    },
+    {
+      "id": 20,
+      "type": "mc",
+      "question": "Sustancia de referencia para el calor específico:",
+      "choices": ["Aire", "Agua", "Hierro"],
+      "answer": 1,
+      "explanation": "El agua se toma como referencia porque requiere mucha energía para cambiar su temperatura.",
+      "word": "agua",
+      "position": 4,
+      "hint": "Es vital y transparente."
+    },
+    {
+      "id": 21,
+      "type": "mc",
+      "question": "El calor específico del agua es:",
+      "choices": ["1 cal/g·°C", "2 cal/g·°C", "0.5 cal/g·°C"],
+      "answer": 0,
+      "explanation": "Se necesita una caloría para aumentar en 1 °C la temperatura de 1 gramo de agua.",
+      "word": "específico",
+      "position": 5,
+      "hint": "Número pequeño, exacto."
+    },
+    {
+      "id": 22,
+      "type": "mc",
+      "question": "Fórmula del calor sensible:",
+      "choices": ["Q = m · c · ΔT", "Q = m · g", "Q = P · t"],
+      "answer": 0,
+      "explanation": "El calor sensible se calcula multiplicando la masa, el calor específico y el cambio de temperatura.",
+      "word": "fórmula",
+      "position": 6,
+      "hint": "Incluye masa, calor específico y delta T."
+    },
+    {
+      "id": 24,
+      "type": "text",
+      "question": "Explica el procedimiento para calcular el calor que requiere 100 g de agua al pasar de 20 °C a 30 °C.",
+      "answer": "Q = m·c·ΔT = 100 × 1 × 10 = 1 000 cal",
+      "explanation": "El calor sensible depende de la masa, el calor específico y la variación de temperatura.",
+      "word": "cuerpo",
+      "position": 7,
+      "hint": "Usa la fórmula Q = m·c·ΔT."
+    }
+  ]
+}

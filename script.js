@@ -3,6 +3,7 @@ let QUESTIONS = [];
 let HIDDENPOSITIONS = [];
 const correctSound = new Audio("resources/Correct.mp3");
 const wrongSound = new Audio("resources/Wrong.mp3");
+let tries = 0;
 
 // === Estado del juego ===
 let state = {
@@ -37,11 +38,12 @@ const resetBtn = document.getElementById('resetBtn');
 const jokerBtn = document.getElementById('jokerBtn');
 
 
-function init() {
+function init(path) {
     welcomeScreen.style.display = 'none';
     document.querySelector('.app').style.display = 'block';
+    resetState();
 
-    fetch('resources/preguntas.json').then(response => response.json())
+    fetch(path).then(response => response.json())
         .then(data => {
             loadData(data);
             renderQuestionCard();
@@ -52,6 +54,27 @@ function init() {
         });
 }
 
+function selectSource(tries) {
+    if (tries > 3) {
+        alert('¡Felicidades! Completaste el desafío.');
+        return resetGame();
+    }
+
+    switch (tries) {
+        case 1:
+            init('resources/QUESTIONS_1.json');
+            break;
+        case 2:
+            init('resources/QUESTIONS_2.json');
+            break;
+        case 3:
+            init('resources/QUESTIONS_3.json');
+            break;
+        default:
+            init('resources/QUESTIONS_0.json');
+    }
+}
+
 function loadData(data) {
     SENTENCE = data.sentence.split(" ");
     QUESTIONS = data.questions;
@@ -60,6 +83,7 @@ function loadData(data) {
 }
 
 function renderSentence(hiddenPositions) {
+    finalSentence.innerHTML = '';
     SENTENCE.forEach((word, index) => {
         if (hiddenPositions.includes(index)) {
             const input = document.createElement("input");
@@ -215,8 +239,9 @@ function checkFinalSentence() {
     });
 
     if (allCorrect) {
-        qText.innerHTML = '¡Felicidades! Encontraste todas las palabras.';
-        resetGame();
+        alert('¡Felicidades! Encontraste todas las palabras.');
+        tries++;
+        selectSource(tries);
     } else {
         alert('Algunas palabras son incorrectas. Aquí está la respuesta correcta:');
         blanks.forEach(input => {
@@ -285,13 +310,15 @@ function nextQuestion() {
 
 function showFinalScreen() {
     if (!document.querySelector('.free-input')) {
+        tries++;
         alert('¡Felicidades! Completaste el desafío.');
-        return resetGame();
+        return selectSource(tries);
     }
     qText.innerHTML = "Completa la oración:";
     timerEl.innerHTML = '';
     choicesEl.innerHTML = '';
     submitBtn.textContent = 'Enviar oración';
+    submitBtn.style.display = 'block';
     submitBtn.disabled = false;
     submitBtn.classList.remove('locked');
     nextBtn.disabled = true;
@@ -380,39 +407,53 @@ function playSound(isCorrect) {
 }
 
 function launchConfetti() {
-  var duration = 0.3 * 1000;
-  var end = Date.now() + duration;
+    var duration = 0.3 * 1000;
+    var end = Date.now() + duration;
 
-  (function frame() {
-    confetti({
-      particleCount: 5,
-      angle: 60,
-      spread: 55,
-      origin: { x: 0 }
-    });
-    confetti({
-      particleCount: 5,
-      angle: 120,
-      spread: 55,
-      origin: { x: 1 }
-    });
+    (function frame() {
+        confetti({
+            particleCount: 5,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 }
+        });
+        confetti({
+            particleCount: 5,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 }
+        });
 
-    if (Date.now() < end) {
-      requestAnimationFrame(frame);
-    }
-  }());
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
 }
 
 function flashScreen() {
-  const flash = document.createElement("div");
-  flash.className = "screen-flash";
-  document.body.appendChild(flash);
+    const flash = document.createElement("div");
+    flash.className = "screen-flash";
+    document.body.appendChild(flash);
 
-  setTimeout(() => flash.remove(), 400);
+    setTimeout(() => flash.remove(), 400);
+}
+
+function resetState() {
+    state = {
+        index: 0,
+        jokers: 3,
+        answered: false,
+        startTime: 0,
+        extraTime: 0,
+        timer: null,
+        remaining: 0,
+        usedJokers: []
+
+    };
 }
 
 submitBtn.addEventListener('click', checkAnswer);
 nextBtn.addEventListener('click', nextQuestion);
 resetBtn.addEventListener('click', resetGame);
 jokerBtn.addEventListener('click', useJoker);
-startBtn.addEventListener('click', init);
+startBtn.addEventListener('click', () => selectSource(tries));

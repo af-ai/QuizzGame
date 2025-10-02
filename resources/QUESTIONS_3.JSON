@@ -1,0 +1,103 @@
+{
+  "sentence": "La energía térmica puede viajar de tres formas : por conducción , con contacto directo ; por convección , a través del movimiento de fluidos ; y por radiación , incluso en el vacío del espacio , como lo hace el Sol al llegar a la Tierra .",
+  "hiddenPositions": [2, 4, 10, 17, 22, 24, 28, 46],
+  "questions": [
+    {
+      "id": 7,
+      "type": "mc",
+      "question": "Transferencia de calor en sólidos por contacto directo:",
+      "choices": ["Convección", "Radiación", "Conducción"],
+      "answer": 2,
+      "explanation": "La conducción ocurre cuando la energía pasa de partícula a partícula dentro de un sólido.",
+      "word": "conducción",
+      "position": 0,
+      "hint": "Piensa en una cuchara en sopa caliente."
+    },
+    {
+      "id": 8,
+      "type": "mc",
+      "question": "Ejemplo de conducción:",
+      "choices": ["Calentar una cuchara metálica en sopa", "El Sol calentando la Tierra", "Corrientes de aire caliente"],
+      "answer": 0,
+      "explanation": "El calor pasa a la cuchara por conducción, sin movimiento de materia.",
+      "word": "ejemplo",
+      "position": 1,
+      "hint": "Algo cotidiano en la cocina."
+    },
+    {
+      "id": 9,
+      "type": "mc",
+      "question": "Transferencia de calor en fluidos por movimiento de masas:",
+      "choices": ["Convección", "Radiación", "Conducción"],
+      "answer": 0,
+      "explanation": "En líquidos y gases, el calor se transfiere por corrientes de convección.",
+      "word": "convección",
+      "position": 2,
+      "hint": "Ocurre en agua hirviendo."
+    },
+    {
+      "id": 10,
+      "type": "mc",
+      "question": "Ejemplo de convección:",
+      "choices": ["Agua hirviendo en una olla", "Una plancha caliente", "Una fogata iluminando"],
+      "answer": 0,
+      "explanation": "Las partículas calientes suben y las frías bajan, formando corrientes circulares.",
+      "word": "olla",
+      "position": 3,
+      "hint": "Lo ves al hervir agua."
+    },
+    {
+      "id": 11,
+      "type": "mc",
+      "question": "Transferencia de calor por ondas electromagnéticas:",
+      "choices": ["Convección", "Radiación", "Conducción"],
+      "answer": 1,
+      "explanation": "La radiación no requiere contacto ni materia, sino que viaja como ondas electromagnéticas.",
+      "word": "radiación",
+      "position": 4,
+      "hint": "Viene del Sol."
+    },
+    {
+      "id": 12,
+      "type": "mc",
+      "question": "Ejemplo de radiación:",
+      "choices": ["El calor del Sol llegando a la Tierra", "Una cuchara en sopa caliente", "El aire caliente circulando"],
+      "answer": 0,
+      "explanation": "El calor del Sol llega por radiación, viajando en el vacío.",
+      "word": "Sol",
+      "position": 5,
+      "hint": "No necesita materia."
+    },
+    {
+      "id": 13,
+      "type": "mc",
+      "question": "¿Cuál mecanismo de transferencia de calor no necesita materia?",
+      "choices": ["Conducción", "Radiación", "Convección"],
+      "answer": 1,
+      "explanation": "La radiación se transmite incluso en el vacío.",
+      "word": "vacío",
+      "position": 6,
+      "hint": "Solo uno funciona en el espacio."
+    },
+    {
+      "id": 14,
+      "type": "text",
+      "question": "Describe con tus palabras cómo funciona un conductor térmico.",
+      "answer": "Un conductor permite que el calor pase fácilmente entre sus partículas, como los metales.",
+      "explanation": "Los metales son buenos conductores porque transmiten calor rápidamente.",
+      "word": "conductor",
+      "position": 7,
+      "hint": "Es lo contrario de un aislante."
+    },
+    {
+      "id": 15,
+      "type": "text",
+      "question": "Menciona dos ejemplos de materiales que sean aislantes térmicos.",
+      "answer": "Madera, plástico, icopor",
+      "explanation": "Los aislantes impiden o retardan el paso del calor, ayudando a conservar la temperatura.",
+      "word": "aislante",
+      "position": 8,
+      "hint": "Se usan para conservar calor o frío."
+    }
+  ]
+}

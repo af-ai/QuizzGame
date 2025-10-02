@@ -1,0 +1,93 @@
+{
+  "sentence": "El calor no es una sustancia , sino energía que fluye siempre del cuerpo con mayor temperatura al de menor temperatura , buscando un equilibrio que nunca se detiene .",
+  "hiddenPositions": [1, 5, 8, 13, 16, 22, 24, 28],
+  "questions": [
+    {
+      "id": 4,
+      "type": "mc",
+      "question": "El calor se define como:",
+      "choices": ["Energía almacenada en un cuerpo", "Energía en tránsito por diferencia de temperatura", "La medida de agitación de partículas"],
+      "answer": 1,
+      "explanation": "El calor no es algo que se 'guarde', siempre se transfiere entre cuerpos cuando hay una diferencia de temperatura.",
+      "word": "calor",
+      "position": 0,
+      "hint": "No se acumula, se transfiere."
+    },
+    {
+      "id": 5,
+      "type": "mc",
+      "question": "El calor fluye naturalmente de:",
+      "choices": ["Frío a caliente", "Caliente a frío", "Ambos sentidos"],
+      "answer": 1,
+      "explanation": "El calor fluye siempre desde el cuerpo con mayor temperatura al de menor temperatura hasta que ambos alcanzan equilibrio.",
+      "word": "fluye",
+      "position": 1,
+      "hint": "Piensa en una taza caliente."
+    },
+    {
+      "id": 6,
+      "type": "mc",
+      "question": "Cuando dos cuerpos alcanzan la misma temperatura se logra:",
+      "choices": ["Radiación", "Equilibrio térmico", "Cambio de estado"],
+      "answer": 1,
+      "explanation": "El equilibrio térmico significa que ya no hay flujo de calor, pues ambos cuerpos tienen la misma temperatura.",
+      "word": "equilibrio",
+      "position": 2,
+      "hint": "Todo se estabiliza."
+    },
+    {
+      "id": 17,
+      "type": "mc",
+      "question": "El calor latente es la energía que:",
+      "choices": ["Cambia la temperatura", "Cambia el estado sin variar la temperatura", "Mide la agitación de partículas"],
+      "answer": 1,
+      "explanation": "Ejemplo: cuando el hielo se derrite en agua, absorbe calor, pero su temperatura sigue en 0 °C hasta que termina de fundirse.",
+      "word": "latente",
+      "position": 3,
+      "hint": "Se oculta en los cambios de estado."
+    },
+    {
+      "id": 18,
+      "type": "mc",
+      "question": "El calor sensible es la energía que:",
+      "choices": ["Cambia el estado", "Cambia la temperatura", "Se transmite por radiación"],
+      "answer": 1,
+      "explanation": "El calor sensible provoca un aumento o disminución de la temperatura, sin alterar el estado físico del material.",
+      "word": "sensible",
+      "position": 4,
+      "hint": "Lo notas como variación de temperatura."
+    },
+    {
+      "id": 19,
+      "type": "mc",
+      "question": "Durante un cambio de estado, la temperatura:",
+      "choices": ["Sube", "Baja", "Permanece constante"],
+      "answer": 2,
+      "explanation": "En esos procesos, la energía no cambia la temperatura, sino que se usa en romper o formar enlaces moleculares.",
+      "word": "cambio",
+      "position": 5,
+      "hint": "Ni sube ni baja."
+    },
+    {
+      "id": 23,
+      "type": "mc",
+      "question": "La capacidad calorífica se define como:",
+      "choices": ["Calor necesario para cambiar 1 g en 1 °C", "Calor necesario para cambiar la temperatura de todo el cuerpo en 1 °C", "Energía total almacenada"],
+      "answer": 1,
+      "explanation": "A diferencia del calor específico, no depende de la unidad de masa, sino del cuerpo entero.",
+      "word": "capacidad",
+      "position": 6,
+      "hint": "Es global, no por unidad de masa."
+    },
+    {
+      "id": 25,
+      "type": "text",
+      "question": "Explica con tus palabras cómo se calcula el calor requerido para calentar 200 g de agua de 25 °C a 75 °C.",
+      "answer": "Q = m·c·ΔT = 200 × 1 × (75 – 25) = 10 000 cal",
+      "explanation": "La fórmula general es Q = m·c·ΔT, multiplicando masa, calor específico y variación de temperatura.",
+      "word": "requerido",
+      "position": 7,
+      "hint": "Usa la fórmula del calor sensible."
+    }
+  ]
+}
