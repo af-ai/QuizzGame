@@ -1,6 +1,8 @@
 let SENTENCE = [];
 let QUESTIONS = [];
 let HIDDENPOSITIONS = [];
+const correctSound = new Audio("resources/Correct.mp3");
+const wrongSound = new Audio("resources/Wrong.mp3");
 
 // === Estado del juego ===
 let state = {
@@ -95,6 +97,7 @@ function renderChoices(q) {
     choicesEl.innerHTML = '';
 
     if (q.type === 'mc') {
+        submitBtn.style.display = 'none';
         q.choices.forEach((c, i) => {
             const btn = document.createElement('button');
             btn.className = 'choice';
@@ -105,6 +108,7 @@ function renderChoices(q) {
             choicesEl.appendChild(btn);
         });
     } else if (q.type === 'text') {
+        submitBtn.style.display = 'block';
         const input = document.createElement('input');
         input.type = 'text';
         input.id = 'freeInput';
@@ -115,8 +119,8 @@ function renderChoices(q) {
 }
 
 function selectChoice(btn) {
-    Array.from(choicesEl.children).forEach(ch => ch.classList.remove('selected'));
     btn.classList.add('selected');
+    checkAnswer();
 }
 
 function updateJokerUI() {
@@ -146,6 +150,7 @@ function startTimer() {
 
         if (state.remaining <= 0) {
             clearInterval(state.timer);
+            disableElements();
             showFeedback(false, QUESTIONS[state.index].explanation);
         }
     }, 1000);
@@ -183,6 +188,7 @@ function checkAnswer() {
         correct = chosen.toLowerCase() === String(q.answer).toLowerCase();
     }
 
+    playSound(correct);
     disableElements();
     showFeedback(correct, q.explanation);
     clearInterval(state.timer);
@@ -361,6 +367,13 @@ function applyExtraTime() {
 
 function resetGame() {
     location.reload();
+}
+
+function playSound(isCorrect) {
+    if (isCorrect) {
+        return correctSound.play();
+    }
+    wrongSound.play();
 }
 
 submitBtn.addEventListener('click', checkAnswer);
