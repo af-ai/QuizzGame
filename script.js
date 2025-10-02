@@ -136,8 +136,8 @@ function updateJokerUI() {
 }
 
 function startTimer() {
-    let total = 10 + (state.extraTime || 0);
-    if (total > 20) total = 20;
+    let total = 30 + (state.extraTime || 0);
+    if (total > 35) total = 35;
     state.extraTime = 0;
     state.remaining = total;
 
