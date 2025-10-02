@@ -136,8 +136,8 @@ function updateJokerUI() {
 }
 
 function startTimer() {
-    let total = 30 + (state.extraTime || 0);
-    if (total > 35) total = 35;
+    let total = 15 + (state.extraTime || 0);
+    if (total > 20) total = 20;
     state.extraTime = 0;
     state.remaining = total;
 
@@ -372,9 +372,43 @@ function resetGame() {
 
 function playSound(isCorrect) {
     if (isCorrect) {
-        return correctSound.play();
+        correctSound.play();
+        return launchConfetti();
     }
     wrongSound.play();
+    flashScreen();
+}
+
+function launchConfetti() {
+  var duration = 0.3 * 1000;
+  var end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 5,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 }
+    });
+    confetti({
+      particleCount: 5,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 }
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  }());
+}
+
+function flashScreen() {
+  const flash = document.createElement("div");
+  flash.className = "screen-flash";
+  document.body.appendChild(flash);
+
+  setTimeout(() => flash.remove(), 400);
 }
 
 submitBtn.addEventListener('click', checkAnswer);

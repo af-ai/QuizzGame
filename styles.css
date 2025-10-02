@@ -99,6 +99,7 @@ body {
     0% {
         --angle: 0deg;
     }
+
     100% {
         --angle: 360deg;
     }
@@ -290,3 +291,23 @@ input.btn.small {
     padding: 6px 12px;
     font-size: 14px;
 }*/
+
+.screen-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 0, 0, 0.2);
+  animation: flash-screen 0.2s ease;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes flash-screen {
+  0%   { opacity: 0; }
+  25%  { opacity: 1; }
+  50%  { opacity: 0; }
+  75%  { opacity: 1; }
+  100% { opacity: 0; }
+}
