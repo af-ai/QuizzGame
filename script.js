@@ -55,23 +55,8 @@ function init(path) {
 }
 
 function selectSource(tries) {
-    if (tries > 3) {
-        return resetGame();
-    }
-
-    switch (tries) {
-        case 1:
-            init('resources/QUESTIONS_1.json');
-            break;
-        case 2:
-            init('resources/QUESTIONS_2.json');
-            break;
-        case 3:
-            init('resources/QUESTIONS_3.json');
-            break;
-        default:
-            init('resources/QUESTIONS_0.json');
-    }
+    if (tries > 3) return resetGame();
+    init(`resources/QUESTIONS_${tries || 0}.json`);
 }
 
 function loadData(data) {
@@ -159,8 +144,8 @@ function updateJokerUI() {
 }
 
 function startTimer() {
-    let total = 15 + (state.extraTime || 0);
-    if (total > 20) total = 20;
+    let total = 30 + (state.extraTime || 0);
+    if (total > 35) total = 35;
     state.extraTime = 0;
     state.remaining = total;
 
