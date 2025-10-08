@@ -5,16 +5,11 @@ Este proyecto es una aplicación web que representa un juego sencillo de pregunt
 La aplicación está disponible en: [Quizz Game](https://af-ai.github.io/QuizzGame/)
 Si deseas ejecutar el proyecto en tu equipo:
 
-### Clonar el repositorio
-git clone https://github.com/af-ai/QuizzGame.git
-
-### Entrar en la carpeta del proyecto
-cd QuizzGame
-
-### Abrir el archivo principal en tu navegador
-start index.html   # En Windows
-### o
-open index.html    # En macOS
+1. Clonar el repositorio:
+   git clone https://github.com/af-ai/QuizzGame.git
+2. Entrar en la carpeta del proyecto:
+   cd QuizzGame
+3. Abrir el archivo principal (index.html) en tu navegador.
 
 ## Cómo jugar
 
