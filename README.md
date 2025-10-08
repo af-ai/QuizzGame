@@ -3,25 +3,40 @@ Este proyecto es una aplicación web que representa un juego sencillo de pregunt
 
 ## Ejecución
 La aplicación está disponible en: [Quizz Game](https://af-ai.github.io/QuizzGame/)
+Si deseas ejecutar el proyecto en tu equipo:
 
-## Uso (Reglas de juego)
-1. El objetivo es completar o formar una oración que se muestra en la parte inferior.
-2. El número de preguntas es proporcional al número de palabras por encontrar.
-3. Cada pregunta correctamente respondida se "premia" mostrando una palabra cualquiera de las que faltan en la oración.
-4. Si una pregunta se responde correctamente en menos de 5 segundos, la siguiente pregunta tendrá 3 segundos adicionales.
-5. A lo largo del juego se dispone de 3 ayudas:
-  - Tiempo adicional de 5 segundos.
-  - 50/50.
-  - Pista.
-6. Al final de las preguntas se tiene la posibilidad de completar la oración escribiendo las palabras faltantes, si el jugador completa correctamente la oración, se retoma el juego con otro conjunto de preguntas y una nueva oración.
+# Clonar el repositorio
+git clone https://github.com/af-ai/QuizzGame.git
+
+# Entrar en la carpeta del proyecto
+cd QuizzGame
+
+# Abrir el archivo principal en tu navegador
+start index.html   # En Windows
+# o
+open index.html    # En macOS
+
+## Cómo jugar
+
+1. El objetivo es **completar una oración** que aparece en la parte inferior de la pantalla.  
+2. El número de **preguntas** es proporcional al número de **palabras faltantes**.  
+3. Cada respuesta correcta revela **una palabra aleatoria** de la oración.  
+4. Si respondes correctamente **en menos de 5 segundos**, la siguiente pregunta te otorga **3 segundos extra**.  
+5. Dispones de **3 tipos de ayudas** durante el juego:
+   - 🕐 **+5 segundos** de tiempo adicional.  
+   - ⚖️ **50/50**, elimina dos opciones incorrectas.  
+   - 💡 **Pista**, muestra una ayuda textual sobre la respuesta.
+6. Al finalizar las preguntas, puedes **completar manualmente** la oración. Si la aciertas, comienza una nueva ronda con una frase distinta.
 
 ## Tecnologías utilizadas
-- HTML
-- CSS
-- JavaScript
+- **HTML5**
+- **CSS3**
+- **JavaScript (Vanilla)**
 
 ## Autor
-Andrés Acevedo - Estudiante de ingeniería de sistemas y computación UPTC.
+   Andrés Acevedo
+   Estudiante de ingeniería de sistemas y computación - UPTC
+   andresacevedo515@gmail.com
 
 ## Licencia
-Este proyecto se distribuye bajo la licencia **GNU Affero General Public License versión 3 (AGPL v3)**.
+Este proyecto se distribuye bajo la licencia [**GNU Affero General Public License versión 3 (AGPL v3)**](https://www.gnu.org/licenses/agpl-3.0.html).
