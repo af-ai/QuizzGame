@@ -3,6 +3,7 @@ Este proyecto es una aplicación web que representa un juego sencillo de pregunt
 
 ## Ejecución
 La aplicación está disponible en: [Quizz Game](https://af-ai.github.io/QuizzGame/)
+
 Si deseas ejecutar el proyecto en tu equipo:
 
 1. Clonar el repositorio:
