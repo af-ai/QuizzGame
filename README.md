@@ -31,7 +31,9 @@ Si deseas ejecutar el proyecto en tu equipo:
 
 ## Autor
    Andrés Acevedo
+
    Estudiante de ingeniería de sistemas y computación - UPTC
+   
    andresacevedo515@gmail.com
 
 ## Licencia
