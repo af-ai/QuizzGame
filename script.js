@@ -26,6 +26,7 @@ const feedback = document.getElementById('feedback');
 const pistaEl = document.getElementById('pista');
 const finalBox = document.getElementById('finalBox');
 const finalSentence = document.getElementById('finalSentence');
+const wordsZone = document.getElementById('words-zone');
 const collectedWords = document.getElementById('collectedWords');
 const joker = document.getElementById('joker');
 const timerEl = document.getElementById('timer');
@@ -37,6 +38,10 @@ const nextBtn = document.getElementById('nextBtn');
 const resetBtn = document.getElementById('resetBtn');
 const jokerBtn = document.getElementById('jokerBtn');
 
+function selectSource(tries) {
+    if (tries > 3) return resetGame();
+    init(`resources/QUESTIONS_${tries || 0}.json`);
+}
 
 function init(path) {
     welcomeScreen.style.display = 'none';
@@ -54,11 +59,6 @@ function init(path) {
         });
 }
 
-function selectSource(tries) {
-    if (tries > 3) return resetGame();
-    init(`resources/QUESTIONS_${tries || 0}.json`);
-}
-
 function loadData(data) {
     SENTENCE = data.sentence.split(" ");
     QUESTIONS = data.questions;
@@ -70,17 +70,17 @@ function renderSentence(hiddenPositions) {
     finalSentence.innerHTML = '';
     SENTENCE.forEach((word, index) => {
         if (hiddenPositions.includes(index)) {
-            const input = document.createElement("input");
-            input.type = "text";
-            input.disabled = true;
-            input.size = word.length;
-            input.classList.add("free-input", "free-input-locked");
-            input.dataset.position = index;
-            finalSentence.appendChild(input);
+            const wordContainer = document.createElement("div");
+            wordContainer.classList.add("word-container");
+            wordContainer.style.width = `${word.length}ch`;
+            wordContainer.dataset.position = index;
+            finalSentence.appendChild(wordContainer);
         } else {
-            const span = document.createElement("span");
-            span.textContent = word + " ";
-            finalSentence.appendChild(span);
+            const div = document.createElement("div");
+            div.style.display = 'inline-block';
+            div.style.marginRight = '1ch';
+            div.textContent = word;
+            finalSentence.appendChild(div);
         }
     });
 }
@@ -207,20 +207,25 @@ function checkAnswer() {
 }
 
 function checkFinalSentence() {
-    const blanks = document.querySelectorAll('.free-input');
+    if (wordsYet() > 0) {
+        return alert('No has completado toda la oración');
+    }
+
+    const blanks = Array.from(document.querySelectorAll('.word-to-drag'));
+
+    const ids = blanks.map(el => el.id);
+    SENTENCE = SENTENCE.filter((_, index) => ids.includes(String(index)));
+
     let allCorrect = true;
 
-    blanks.forEach(input => {
-        const userWord = input.value.trim();
-        const correctWord = SENTENCE[parseInt(input.dataset.position, 10)];
-
-        if (userWord.toLowerCase() !== correctWord.toLowerCase()) {
+    for (let index = 0; index < blanks.length; index++) {
+        if (blanks[index].textContent !== SENTENCE[index]) {
             allCorrect = false;
-            input.style.borderColor = 'red';
+            blanks[index].style.borderColor = 'red';
         } else {
-            input.style.borderColor = 'green';
+            blanks[index].style.borderColor = 'green';
         }
-    });
+    }
 
     if (allCorrect) {
         alert('¡Felicidades! Encontraste todas las palabras.');
@@ -230,14 +235,17 @@ function checkFinalSentence() {
         selectSource(tries);
     } else {
         alert('Algunas palabras son incorrectas. Aquí está la respuesta correcta:');
-        blanks.forEach(input => {
-            input.disabled = true;
-            const pos = parseInt(input.dataset.position, 10);
-            input.value = SENTENCE[pos];
-            disableElements();
-        });
+        for (let index = 0; index < blanks.length; index++) {
+            blanks[index].textContent = SENTENCE[index];
+        }
+        disableElements();
     }
 
+}
+
+function wordsYet() {
+    const remaining = wordsZone.querySelectorAll('.word-to-drag');
+    return remaining.length;
 }
 
 function disableElements() {
@@ -295,7 +303,7 @@ function nextQuestion() {
 }
 
 function showFinalScreen() {
-    if (!document.querySelector('.free-input')) {
+    if (!document.querySelector('.word-container')) {
         tries++;
         alert('¡Felicidades! Completaste el desafío.');
         return selectSource(tries);
@@ -313,9 +321,49 @@ function showFinalScreen() {
     jokerBtn.classList.add('locked');
     feedback.style.display = 'none';
     pistaEl.style.display = 'none';
-    document.querySelectorAll(".free-input-locked").forEach(input => {
-        input.disabled = false;
-        input.classList.remove("free-input-locked");
+
+    renderWordToDrag();
+    dragAndDrop();
+}
+
+function renderWordToDrag() {
+    while (HIDDENPOSITIONS.length) {
+        const index = Math.floor(Math.random() * HIDDENPOSITIONS.length);
+        const div = document.createElement('div');
+        div.className = 'word-to-drag';
+        div.id = HIDDENPOSITIONS[index];
+        div.draggable = true;
+        div.textContent = SENTENCE[HIDDENPOSITIONS[index]];
+        wordsZone.appendChild(div);
+        HIDDENPOSITIONS.splice(index, 1);
+    }
+}
+
+function dragAndDrop() {
+    const wordContainers = document.querySelectorAll('.word-container');
+
+    wordsZone.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('id', e.target.id);
+    });
+
+    wordContainers.forEach(container => {
+        container.addEventListener('dragover', e => {
+            e.preventDefault();
+            container.classList.add('hover');
+        });
+
+        container.addEventListener('dragleave', () => {
+            container.classList.remove('hover');
+        });
+
+        container.addEventListener('drop', e => {
+            container.classList.remove('hover');
+
+            const id = e.dataTransfer.getData('id');
+            let wordDrop = document.getElementById(id);
+            wordDrop.draggable = false;
+            container.replaceWith(wordDrop);
+        });
     });
 }
 
@@ -420,7 +468,6 @@ function flashScreen() {
     const flash = document.createElement("div");
     flash.className = "screen-flash";
     document.body.appendChild(flash);
-
     setTimeout(() => flash.remove(), 400);
 }
 

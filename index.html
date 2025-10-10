@@ -17,7 +17,14 @@
     <p>Forma la oración correcta respondiendo preguntas. Puedes usar comodines para ayudarte.</p>
 
     <ul>
-      <li>Responde rápido para ganar tiempo extra.</li>
+      <li>El objetivo es completar una oración que aparece en la parte inferior de la pantalla.</li>
+      <li>El número de preguntas es proporcional al número de palabras faltantes.</li>
+      <li>Cada respuesta correcta revela una palabra aleatoria de la oración.</li>
+      <li>Si respondes correctamente en menos de 5 segundos, <br>
+          la siguiente pregunta te otorga 3 segundos extra.</li>
+      <li>Dispones de 3 ayudas durante el juego.</li>
+      <li>Al finalizar las preguntas, puedes completar manualmente la oración. <br>
+          Si la aciertas, comienza una nueva ronda con una frase distinta.</li>
       <li>Puedes usar hasta 3 comodines por juego.</li>
       <li>Forma la oración final.</li>
     </ul>
@@ -69,6 +76,7 @@
         <div class="final" id="finalBox">
           <strong>Oración formada:</strong>
           <div id="finalSentence" style="margin-top:8px;font-size:16px"></div>
+          <div id="words-zone"></div>
         </div>
       </div>
   </div>

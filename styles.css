@@ -55,9 +55,10 @@ body {
 
 #welcomeScreen ul li {
     margin: 0;
-    padding: 0;
+    padding: 3px 0;
     list-style: none;
     font-weight: lighter;
+    font-size: 14px;
 }
 
 #welcomeScreen button {
@@ -172,6 +173,38 @@ header h1 {
     color: inherit;
 }
 
+.word-container {
+    margin: 0 1ch 0 0;
+    padding: 0 1ch;
+    display: inline-block;
+    height: 1.2em;
+    vertical-align: middle;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background: transparent;
+    color: inherit;
+    transition: 0.3s;
+}
+
+.hover {
+    background-color: var(--accent);
+}
+
+#words-zone {
+    display: flex;
+    margin: 2%;
+    justify-content: center;
+}
+
+.word-to-drag {
+    display: inline-block;
+    margin: 0 1ch 0 0;
+    padding: 0 1ch;
+    border: 1px solid gray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .free-input-locked {
     border-color: gray;
 }
@@ -272,7 +305,8 @@ button.primary {
     font-size: inherit;
     font-weight: bold;
     font-style: italic;
-    margin: 5px;
+    color: var(--accent);
+    margin-right: 1ch;
 }
 
 /*small.hint {
