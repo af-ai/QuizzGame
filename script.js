@@ -323,10 +323,15 @@ function showFinalScreen() {
     pistaEl.style.display = 'none';
 
     renderWordToDrag();
-    dragAndDrop();
+    if ('ontouchstart' in window) {
+        dragAndDropTouch();
+    } else {
+        dragAndDrop();
+    }
 }
 
 function renderWordToDrag() {
+    wordsZone.style.display = 'flex';
     while (HIDDENPOSITIONS.length) {
         const index = Math.floor(Math.random() * HIDDENPOSITIONS.length);
         const div = document.createElement('div');
@@ -364,6 +369,87 @@ function dragAndDrop() {
             wordDrop.draggable = false;
             container.replaceWith(wordDrop);
         });
+    });
+}
+
+function dragAndDropTouch() {
+    const words = document.querySelectorAll('.word-to-drag');
+    const wordContainers = document.querySelectorAll('.word-container');
+    let activeWord = null;
+    let currentTarget = null;
+
+    words.forEach(word => {
+        const originalParent = word.parentElement;
+        const originalIndex = Array.from(originalParent.children).indexOf(word);
+        word.addEventListener('touchstart', e => {
+            activeWord = word;
+            word.classList.add('dragging');
+
+            const rect = word.getBoundingClientRect();
+            word.dataset.startX = rect.left;
+            word.dataset.startY = rect.top;
+
+            e.preventDefault();
+        });
+
+        word.addEventListener('touchmove', e => {
+            if (!activeWord) return;
+            const touch = e.touches[0];
+
+            // mover la palabra visualmente
+            activeWord.style.position = 'fixed';
+            activeWord.style.left = `${touch.clientX - activeWord.offsetWidth / 2}px`;
+            activeWord.style.top = `${touch.clientY - activeWord.offsetHeight / 2}px`;
+            activeWord.style.zIndex = '1000';
+
+            // detectar si está sobre un contenedor
+            let overContainer = null;
+            wordContainers.forEach(container => {
+                const rect = container.getBoundingClientRect();
+                const inside =
+                    touch.clientX >= rect.left &&
+                    touch.clientX <= rect.right &&
+                    touch.clientY >= rect.top &&
+                    touch.clientY <= rect.bottom;
+
+                if (inside) overContainer = container;
+                container.classList.toggle('hover', inside);
+            });
+
+            currentTarget = overContainer;
+        });
+
+        word.addEventListener('touchend', e => {
+            if (!activeWord) return;
+
+            // quitar efecto hover
+            wordContainers.forEach(c => c.classList.remove('hover'));
+
+            if (currentTarget && !currentTarget.hasChildNodes()) {
+                currentTarget.replaceWith(activeWord);
+
+                activeWord.style.position = '';
+                activeWord.style.left = '';
+                activeWord.style.top = '';
+                activeWord.style.zIndex = '';
+
+                activeWord.draggable = false;
+                activeWord.removeEventListener('touchstart', () => { });
+                activeWord.removeEventListener('touchmove', () => { });
+                activeWord.removeEventListener('touchend', () => { });
+            } else {
+                activeWord.style.position = '';
+                activeWord.style.left = '';
+                activeWord.style.top = '';
+                activeWord.style.zIndex = '';
+                activeWord.classList.remove('dragging');
+            }
+
+            activeWord.classList.remove('dragging');
+            activeWord = null;
+            currentTarget = null;
+        });
+
     });
 }
 

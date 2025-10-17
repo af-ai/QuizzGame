@@ -184,6 +184,8 @@ header h1 {
     background: transparent;
     color: inherit;
     transition: 0.3s;
+    position: relative;
+    transition: border-color 0.2s ease;
 }
 
 .hover {
@@ -191,22 +193,41 @@ header h1 {
 }
 
 #words-zone {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     max-width: 100%;
-    gap: 0..5ch;
     margin: 2%;
+    gap: 1ch;
     justify-content: center;
-    overflow-x: auto;
+    overflow: hidden;
+    position: relative;
 }
 
 .word-to-drag {
     display: inline-block;
-    margin: 1ch 1ch 0 0;
+    position: relative;
     padding: 0 1ch;
     border: 1px solid gray;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    transition: transform 0.2s ease;
+    margin-right: 1ch;
+}
+
+.word-in-container {
+    margin: 0 1ch 0 0;
+    padding: 0 1ch;
+    display: inline-block;
+    height: 1.2em;
+    vertical-align: middle;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background: transparent;
+    color: inherit;
+    cursor: default;
+    position: relative;
 }
 
 .free-input-locked {
@@ -281,6 +302,10 @@ button.primary {
     border-radius: 8px;
 }
 
+#finalSentence {
+    position: relative;
+}
+
 .blank {
     display: inline-block;
     min-width: 60px;
@@ -331,21 +356,35 @@ input.btn.small {
 }*/
 
 .screen-flash {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(255, 0, 0, 0.2);
-  animation: flash-screen 0.2s ease;
-  pointer-events: none;
-  z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 0, 0, 0.2);
+    animation: flash-screen 0.2s ease;
+    pointer-events: none;
+    z-index: 9999;
 }
 
 @keyframes flash-screen {
-  0%   { opacity: 0; }
-  25%  { opacity: 1; }
-  50%  { opacity: 0; }
-  75%  { opacity: 1; }
-  100% { opacity: 0; }
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
